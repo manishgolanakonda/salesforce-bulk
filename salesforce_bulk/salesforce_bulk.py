@@ -468,14 +468,11 @@ class SalesforceBulk(object):
 
         if not parse_csv:
             iterator = resp.iter_lines()
-            for i in iterator:
-                logger.info("before csv {}".format(i))
+            
         else:
             iterator = csv.reader((x.replace('\0', '') + '\n' for x in resp.iter_lines()), delimiter=',',
                                   quotechar='"')
-            
-            for i in iterator:
-                logger.info("after csv {}".format(i))
+           
 
         BATCH_SIZE = 5000
         for i, line in enumerate(iterator):
